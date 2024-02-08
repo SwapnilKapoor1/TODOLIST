@@ -90,7 +90,7 @@ function adding(){
     add.setAttribute('style',"visibility:hidden");
     task++;
     taskDisplay();
-    completeAll();
+    completeAll(div);
     clearcmp();
     dlall();
 }
@@ -178,12 +178,15 @@ function taskDisplay(){
     tas.textContent=`${task} tasks left`;
 }
 
-function completeAll(){
+function completeAll(div){
     cmal.addEventListener('click',()=>{
         const btn=document.querySelectorAll(".btns");
      for(let el of btn){  
          el.checked=true;
     }
+        div.setAttribute('style','background-color:green');
+    task=0;
+    taskDisplay();
 })
 }
 function clearcmp(){
