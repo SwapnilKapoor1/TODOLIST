@@ -6,14 +6,15 @@ body img{
 }
 #outer-box{
     position:relative;
-    background-color: grey;
+    background-color: rgb(151, 147, 147);
     width:40%;
     padding:20px;
     margin:auto;
 }
 #inner-box{
-    background-color:rgb(255, 255, 212);
+    background-color:whitesmoke;
     padding:10px;
+    border-radius: 5px;
 }
 
 /* Top Input */
