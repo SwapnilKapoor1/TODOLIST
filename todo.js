@@ -184,7 +184,7 @@ function completeAll(div){
      for(let el of btn){  
          el.checked=true;
     }
-        div.setAttribute('style','background-color:green');
+        div.setAttribute('style','background-color:lightgreen');
     task=0;
     taskDisplay();
 })

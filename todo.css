@@ -47,9 +47,13 @@ body img{
     font-size: smaller;
     padding:4px;
 }
+#cmal{
+    cursor: pointer;
+}
 #clear,#dlal{
     position:absolute;
     right:0rem;
+    cursor: pointer;
     
 }
 #frst{
@@ -68,8 +72,11 @@ body img{
 }
 #all, #inco{
     margin-right:4px;
+    cursor: pointer;
 }
-
+#comp{
+    cursor: pointer; 
+}
 /* buttons added by JS */
 .label{
     font-size: larger;
@@ -86,9 +93,9 @@ body img{
 }
 #cross{
     border-radius: 55%;
-    border:2px solid red;
+    border:2px solid black;
     padding:2px;
     font:medium;
     position: absolute;
-    right:3.5rem;
+    right:3.1rem;
 }
