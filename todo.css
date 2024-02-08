@@ -98,4 +98,5 @@ body img{
     font:medium;
     position: absolute;
     right:3.1rem;
+    cursor: pointer; 
 }
