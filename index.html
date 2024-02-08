@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="todo.css">
+    <title>TODOLIST</title>
+</head>
+
+<body>
+    <img src="bck.png" alt="bck">
+    <div id="outer-box">
+        <form id="inner-box">
+            <div id="top">
+                <span>&#128195</span>              
+                <input type="text" id="inp" placeholder="Type your todo list">
+                <span id="add">+</span> 
+            </div>
+            <div id="second-box">
+                <span id="cmal">
+                    <span> &check;</span>
+                    <span> Complete all tasks</span>
+                </span>
+                <span id="clear"> Clear completed</span>
+                <div id="dlal"> Delete all</div>
+                
+            </div>
+            <hr id="frst">
+            <div id="points"></div>
+            <hr>
+            <div id="footer">
+                <span id="tas"> 0 tasks left</span>
+                <span id="right-bottom">
+                    <span id="all"> All</span>
+                    <span id="inco"> Incomplete</span>
+                    <span id="comp"> Completed</span>
+                </span>
+            </div>
+        </form>
+    </div>    
+    <script src="todo.js"></script>
+</body>
+</html>

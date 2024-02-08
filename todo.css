@@ -1,0 +1,94 @@
+/* Outer div */
+body img{
+    position:absolute;
+    background-size:cover;
+    height:100%;
+}
+#outer-box{
+    position:relative;
+    background-color: grey;
+    width:40%;
+    padding:20px;
+    margin:auto;
+}
+#inner-box{
+    background-color:rgb(255, 255, 212);
+    padding:10px;
+}
+
+/* Top Input */
+#add{
+    border-radius: 55%;
+    border:1.5px solid black;
+    padding:1px;
+    font:large;
+    position: absolute;
+    right:1rem;
+    visibility:hidden;
+}
+#inp{
+    border:none;
+    outline:none;
+    background-color: lightgray;
+    width:80%;
+}
+#top{
+    position:relative;
+    border:1px solid black;
+    padding:4px;
+    background-color: lightgray;
+    border-radius:5px;
+}
+
+/* middle-box */
+#second-box{
+    position:relative;
+    color:grey;
+    font-size: smaller;
+    padding:4px;
+}
+#clear,#dlal{
+    position:absolute;
+    right:0rem;
+    
+}
+#frst{
+    margin-top:13px;
+}
+
+/* footer */
+#footer{
+    position:relative;
+    color:grey;
+    font-size: smaller;
+}
+#right-bottom{
+    position:absolute;
+    right:0rem;
+}
+#all, #inco{
+    margin-right:4px;
+}
+
+/* buttons added by JS */
+.label{
+    font-size: larger;
+    padding:5px;
+}
+.btns{
+    padding:5px;
+}
+
+/* divs create by JS */
+.check{
+    margin:10px;
+    padding:5px;
+}
+#cross{
+    border-radius: 55%;
+    border:2px solid black;
+    padding:2px;
+    font:medium;
+    position: absolute;
+    right:2.5rem;
+}
