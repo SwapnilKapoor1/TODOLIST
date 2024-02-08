@@ -19,13 +19,14 @@ body img{
 
 /* Top Input */
 #add{
-    border-radius: 55%;
-    border:1.5px solid black;
-    padding:1px;
-    font:large;
+    border-radius: 100%;
+    border: 1.5px solid black;
+    padding: 0px 2px 0px 2px;
+    font-size: medium;
     position: absolute;
-    right:1rem;
-    visibility:hidden;
+    right: 1rem;
+    visibility: hidden;
+    cursor: pointer;
 }
 #inp{
     border:none;
@@ -94,10 +95,10 @@ body img{
 }
 #cross{
     border-radius: 55%;
-    border:2px solid black;
-    padding:2px;
-    font:medium;
+    border: 1.75px solid black;
+    padding: 0px 3px 3px 3px;
+    font-size: medium;
     position: absolute;
-    right:3.1rem;
-    cursor: pointer; 
+    right: 3.1rem;
+    cursor: pointer;
 }

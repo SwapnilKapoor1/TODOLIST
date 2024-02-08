@@ -127,7 +127,7 @@ function deleting(ele,li){
     ele.addEventListener('mouseenter',()=>{
        
         cross=document.createElement('span');
-        cross.textContent='X';
+        cross.textContent='x';
         cross.id="cross";
         ele.appendChild(cross);
         dlt(li);
