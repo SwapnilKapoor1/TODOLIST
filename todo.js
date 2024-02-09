@@ -36,9 +36,12 @@ add.addEventListener('click',()=>{
 });
 
 inp.addEventListener('keydown',(event)=>{
-    if(inp.value.trim()!="" && event.key==="Enter"){
+    if(event.key==="Enter"){
         event.preventDefault();
-        adding();
+        if(inp.value.trim()===""){
+            alert("Sorry!Enter atleast one String!")
+        }else{
+        adding();}
     }
 })
 
