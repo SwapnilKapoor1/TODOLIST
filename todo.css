@@ -49,10 +49,10 @@ body img{
     font-size: smaller;
     padding:4px;
 }
-#cmal{
+#completeAll{
     cursor: pointer;
 }
-#clear,#dlal{
+#clear,#deleteAll{
     position:absolute;
     right:0rem;
     cursor: pointer;
@@ -72,11 +72,11 @@ body img{
     position:absolute;
     right:0rem;
 }
-#all, #inco{
+#all, #incomplete{
     margin-right:4px;
     cursor: pointer;
 }
-#comp{
+#complete{
     cursor: pointer; 
 }
 /* buttons added by JS */

@@ -1,121 +1,129 @@
-const inp=document.getElementById("inp");
+const inputTask=document.getElementById("inp");
 const add=document.getElementById("add");
 const list=document.getElementById("points");
-const tas=document.getElementById("tas");
-const com=document.getElementById("comp");
-const inco=document.getElementById("inco");
-const al=document.getElementById("all");
-const cmal=document.getElementById("cmal");
-const clr=document.getElementById("clear");
-const dlal=document.getElementById("dlal");
+const tas=document.getElementById("task");
+const completeButton=document.getElementById("complete");
+const incompleteButton=document.getElementById("incomplete");
+const allButton=document.getElementById("all");
+const completeAllButton=document.getElementById("completeAll");
+const clearAll=document.getElementById("clear");
+const deleteAll=document.getElementById("deleteAll");
 
 
-let task=0;
+let task=0; //initial counter to count the number of tasks
+//initialise the arrays to store the tasks
 let all=[];
-let cmp=[];
-let inc=[];
-let curr='all';
+let completeArray=[];
+let incompleteArray=[];
+//Initialise current array as All
+let currentArray='all';
 
 
 // Event Listeners
+//setting the 'All' to bold when the page loads
 addEventListener("DOMContentLoaded", () => {
-    al.setAttribute("style","font-size:large;color:black");
+    allButton.setAttribute("style","font-size:large;color:black");
 })
 
-
-inp.addEventListener('input',()=>{
-    inp.value.trim() === "" ?add.setAttribute('style',"visibility:hidden"):
+//to make the add button visible when there is any value in the input
+inputTask.addEventListener('input',()=>{
+    inputTask.value.trim() === "" ?add.setAttribute('style',"visibility:hidden"):
     add.setAttribute('style',"visibility:visible");
     }
 );
 
+//on click add, adding the task to the list
 add.addEventListener('click',()=>{
-    if (inp.value.trim()!=""){
+    if (inputTask.value.trim()!=""){
     adding();   
     }
 });
 
-inp.addEventListener('keydown',(event)=>{
+//adding the task on keyboard enter key as well
+inputTask.addEventListener('keydown',(event)=>{
     if(event.key==="Enter"){
         event.preventDefault();
-        if(inp.value.trim()===""){
+        if(inputTask.value.trim()===""){
             alert("Sorry!Enter atleast one String!")
         }else{
         adding();}
     }
 })
 
-com.addEventListener('click',()=>{
-    curr='cmp';
-    com.setAttribute("style","font-size:large;color:black");
-    al.removeAttribute("style","font-size:large;color:black");
-    inco.removeAttribute("style","font-size:large;color:black");
-    display(cmp);
-    });
-inco.addEventListener('click',()=>{
-    curr='inc';
-    com.removeAttribute("style","font-size:large;color:black");
-    al.removeAttribute("style","font-size:large;color:black");
-    inco.setAttribute("style","font-size:large;color:black");
-    display(inc);
+// Listeners to show completed/incompleted tasks
+completeButton.addEventListener('click',()=>{
+    currentArray='completeArray';
+    completeButton.setAttribute("style","font-size:large;color:black");
+    allButton.removeAttribute("style","font-size:large;color:black");
+    incompleteButton.removeAttribute("style","font-size:large;color:black");
+    display(completeArray);
     });
 
-al.addEventListener('click',()=>{
-    curr='all';
-    com.removeAttribute("style","font-size:large;color:black");
-    al.setAttribute("style","font-size:large;color:black");
-    inco.removeAttribute("style","font-size:large;color:black");
+incompleteButton.addEventListener('click',()=>{
+    currentArray='incompleteArray';
+    completeButton.removeAttribute("style","font-size:large;color:black");
+    allButton.removeAttribute("style","font-size:large;color:black");
+    incompleteButton.setAttribute("style","font-size:large;color:black");
+    display(incompleteArray);
+    });
+
+allButton.addEventListener('click',()=>{
+    currentArray='all';
+    completeButton.removeAttribute("style","font-size:large;color:black");
+    allButton.setAttribute("style","font-size:large;color:black");
+    incompleteButton.removeAttribute("style","font-size:large;color:black");
     display(all);
 });
 
 
 // functions
+// function to add the task in the list
 function adding(){
     const div=document.createElement("div");
     div.className="check";
     const li = document.createElement("input");
     li.type="checkbox";
     li.className="btns";
-    li.value=inp.value;
+    li.value=inputTask.value;
     
 
     const label = document.createElement("label");
     label.className="label";
-    label.textContent = inp.value;
+    label.textContent = inputTask.value;
     div.appendChild(li);
     div.appendChild(label);
     all.push(div);
     display(all);
     deleting(div,li);
     completed(li,div);
-    inc.push(div);
-    inp.value = "";
+    incompleteArray.push(div);
+    inputTask.value = "";
     add.setAttribute('style',"visibility:hidden");
     task++;
     taskDisplay();
     completeAll(div);
     clearcmp();
-    dlall();
+    deleteAllfunc();
 }
 
 //function to add or remove from completed and incompleted array
 function completed(li,div){
     li.addEventListener('change',()=>{ 
       if(li.checked===true){
-         if(inc.indexOf(div)!=-1){
-             inc.splice(inc.indexOf(div),1);
+         if(incompleteArray.indexOf(div)!=-1){
+             incompleteArray.splice(incompleteArray.indexOf(div),1);
             }
-            div.setAttribute('style','background-color:green');
-        cmp.push(div);
+            div.setAttribute('style','background-color:lightgreen');
+        completeArray.push(div);
         check();
         task--;
         taskDisplay();
       }else{
-        if(cmp.indexOf(div)!=-1){
-            cmp.splice(cmp.indexOf(div),1);
+        if(completeArray.indexOf(div)!=-1){
+            completeArray.splice(completeArray.indexOf(div),1);
            }
            div.setAttribute('style','color:black');
-        inc.push(div);
+        incompleteArray.push(div);
         check();
         task++;
         taskDisplay();
@@ -133,7 +141,7 @@ function deleting(ele,li){
         cross.textContent='x';
         cross.id="cross";
         ele.appendChild(cross);
-        dlt(li);
+        deleteCross(li);
     })
     ele.addEventListener('mouseleave',()=>{
         
@@ -145,21 +153,21 @@ function deleting(ele,li){
 
 // deleting the clicked cross div
 
-function dlt(li){
-    const crs=document.getElementById('cross');
-    crs.addEventListener('click',()=>{
-        const parentDiv = crs.closest('.check');
+function deleteCross(li){
+    const crossButton=document.getElementById('cross');
+    crossButton.addEventListener('click',()=>{
+        const parentDiv = crossButton.closest('.check');
         if (parentDiv) { 
              parentDiv.remove();
             all.splice(all.indexOf(parentDiv),1); // remove from all array
+            completeArray.includes(parentDiv)?completeArray.splice(completeArray.indexOf(parentDiv),1): 
+            incompleteArray.splice(incompleteArray.indexOf(parentDiv),1); //check if completed or incompleted and then removing
     if(!li.checked)
     task--;
     taskDisplay();
         }
 });
 }
-
-
 
 function display(arr){
     list.innerHTML="";
@@ -169,20 +177,22 @@ function display(arr){
 }
 // function to check in which array we are currently
 function check(){
-    if (curr==='all'){
+    if (currentArray==='all'){
         display(all);
-    }else if(curr==='cmp'){
-        display(cmp);
+    }else if(currentArray==='completeArray'){
+        display(completeArray);
     }else{
-        display(inc);
+        display(incompleteArray);
     }
 }
+
+// display the number of tasks left
 function taskDisplay(){
     tas.textContent=`${task} tasks left`;
 }
 
 function completeAll(div){
-    cmal.addEventListener('click',()=>{
+    completeAllButton.addEventListener('click',()=>{
         const btn=document.querySelectorAll(".btns");
      for(let el of btn){  
          el.checked=true;
@@ -192,9 +202,10 @@ function completeAll(div){
     taskDisplay();
 })
 }
+// clear the completed tasks
 function clearcmp(){
-    clr.addEventListener('click',()=>{
-        cmp=[];  // empty the completed array
+    clearAll.addEventListener('click',()=>{
+        completeArray=[];  // empty the completed array
         const btn=document.querySelectorAll(".btns");
      for(let el of btn){  
          if(el.checked===true){
@@ -208,11 +219,13 @@ function clearcmp(){
     }
 })
 }
-function dlall(){
-    dlal.addEventListener('click',()=>{
+
+// function to delete all the tasks
+function deleteAllfunc(){
+    deleteAll.addEventListener('click',()=>{
     all=[];
-    inc=[];
-    cmp=[];
+    incompleteArray=[];
+    completeArray=[];
     display(all);
     task=0;
     taskDisplay();
