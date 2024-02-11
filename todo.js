@@ -101,36 +101,39 @@ function adding(){
     add.setAttribute('style',"visibility:hidden");
     task++;
     taskDisplay();
-    completeAll(div);
+    completeAll();
     clearcmp();
     deleteAllfunc();
 }
 
 //function to add or remove from completed and incompleted array
 function completed(li,div){
-    li.addEventListener('change',()=>{ 
-      if(li.checked===true){
-         if(incompleteArray.indexOf(div)!=-1){
-             incompleteArray.splice(incompleteArray.indexOf(div),1);
-            }
-            div.setAttribute('style','background-color:lightgreen');
-        completeArray.push(div);
-        check();
-        task--;
-        taskDisplay();
-      }else{
-        if(completeArray.indexOf(div)!=-1){
-            completeArray.splice(completeArray.indexOf(div),1);
-           }
-           div.setAttribute('style','color:black');
-        incompleteArray.push(div);
-        check();
-        task++;
-        taskDisplay();
-      }
-      
-    }) 
+    li.addEventListener('change',()=>{checkComplete(li,div);}); 
 }
+// function to check in complete or completed and act accordingly
+function checkComplete(li,div){ 
+
+    if(li.checked===true){
+       if(incompleteArray.indexOf(div)!=-1){
+           incompleteArray.splice(incompleteArray.indexOf(div),1);
+          }
+          div.setAttribute('style','background-color:lightgreen');
+      completeArray.push(div);
+      check();
+      task--;
+      taskDisplay();
+    }else{
+      if(completeArray.indexOf(div)!=-1){
+       
+          completeArray.splice(completeArray.indexOf(div),1);
+         }
+         div.setAttribute('style','color:black');
+      incompleteArray.push(div);
+      check();
+      task++;
+      taskDisplay();
+    } 
+  }
 
 //adding cross button for deleting
 function deleting(ele,li){
@@ -158,7 +161,7 @@ function deleteCross(li){
     crossButton.addEventListener('click',()=>{
         const parentDiv = crossButton.closest('.check');
         if (parentDiv) { 
-             parentDiv.remove();
+             parentDiv.remove(); //remove the parent Div from DOM
             all.splice(all.indexOf(parentDiv),1); // remove from all array
             completeArray.includes(parentDiv)?completeArray.splice(completeArray.indexOf(parentDiv),1): 
             incompleteArray.splice(incompleteArray.indexOf(parentDiv),1); //check if completed or incompleted and then removing
@@ -191,17 +194,27 @@ function taskDisplay(){
     tas.textContent=`${task} tasks left`;
 }
 
-function completeAll(div){
-    completeAllButton.addEventListener('click',()=>{
-        const btn=document.querySelectorAll(".btns");
-     for(let el of btn){  
-         el.checked=true;
-    }
-        div.setAttribute('style','background-color:lightgreen');
-    task=0;
-    taskDisplay();
-})
+//function to mark all the tasks as completed
+function completeAll() {
+    completeAllButton.addEventListener('click', () => {
+        const btn = document.querySelectorAll(".btns");
+
+        for (let el of btn) {
+            el.checked = true;
+            const parentDiv = el.closest('.check');
+            parentDiv.setAttribute('style', 'background-color:lightgreen');
+            checkComplete(el, parentDiv);
+        }
+        // Update arrays after completing all tasks
+        completeArray = [...all];
+        incompleteArray = [];
+        task = 0;
+        taskDisplay();
+        check();
+    });
 }
+
+
 // clear the completed tasks
 function clearcmp(){
     clearAll.addEventListener('click',()=>{
