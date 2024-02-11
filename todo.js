@@ -123,8 +123,7 @@ function checkComplete(li,div){
       task--;
       taskDisplay();
     }else{
-      if(completeArray.indexOf(div)!=-1){
-       
+      if(completeArray.indexOf(div)!=-1){    
           completeArray.splice(completeArray.indexOf(div),1);
          }
          div.setAttribute('style','color:black');

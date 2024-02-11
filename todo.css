@@ -84,9 +84,23 @@ body img{
     font-size: larger;
     padding:5px;
 }
-.btns{
-    padding:5px;
+/* Add this to your existing CSS or create a new style section */
+.btns {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 1.5px solid #000;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin : 15px 3px -1px 0px !important;
 }
+
+.btns:checked {
+    background-color: #000;
+}
+
 
 /* divs create by JS */
 .check{
@@ -97,6 +111,7 @@ body img{
     border-radius: 55%;
     border: 1.75px solid black;
     padding: 0px 3px 3px 3px;
+    margin-top:6px;
     font-size: medium;
     position: absolute;
     right: 3.1rem;
